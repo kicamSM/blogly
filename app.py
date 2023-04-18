@@ -73,28 +73,29 @@ def edit_user(user_id):
     user = User.query.get(user_id)
     return render_template('edit.html', user=user)
 
-@app.route('/edit<int:user_id>', methods=["POST"])
+@app.route('/edit/<int:user_id>', methods=["POST"])
 def post_edited_user(user_id):
     user = User.query.get(user_id)
     # session.delete(user)
     # db.session.commit()
     
-    user.name = request.form["first_name"]
+    user.first_name = request.form["first_name"]
     user.last_name = request.form["last_name"]
     user.image_url = request.form["image_url"]
-    user.user_id = user_id
+    # user.user_id = user_id
     
     # user = User(first_name=first_name, last_name=last_name, image_url=image_url)
     db.session.add(user)
     db.session.commit()
 
-    return redirect(f"/{user.id}")
-    
+    # return redirect(f"/{user.id}")
+    return redirect("/")
+ 
 @app.route('/<int:user_id>/delete', methods=["POST"])
 # <int:user_id>
 def delete_user(user_id):
     """edit details about a single user"""
-    user = User.query.get(user_id).delete()
+    user = User.query.get(user_id)
     db.session.delete(user)
     db.session.commit()
     
