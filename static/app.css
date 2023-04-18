@@ -1,0 +1,48 @@
+body {
+    background-color: orange;
+}
+
+#profile {
+    background-color: lightslategray;
+    padding: 20px;
+    border-radius: 20px;
+    border: solid rgb(122, 121, 121);
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    height: 175px;
+    width: 500px;
+    /* text-align: center; */
+}
+
+#username {
+margin-right: 50px;
+/* margin-left: 170px; */
+/* margin-top: 50px; */
+/* margin-bottom: 150px; */
+}
+
+#image {
+    /* display: flex; */
+    height: 100px;
+    width: 100px;
+    border: solid black 2px;
+    border-radius: 10px;
+    /* margin-left: 50px; */
+}
+
+#edit {
+    height: 30px;
+    width: 60px;
+    background-color: rgb(118, 191, 216);
+    border-radius: 10px;
+    margin-left: 170px; 
+    /* margin-right: 12px;  */
+}
+
+#delete {
+    height: 30px;
+    width: 90px;
+    background-color: red;
+    border-radius: 10px;
+}

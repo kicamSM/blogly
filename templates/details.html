@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}All Users{% endblock %}
+
+{% block content %}
+<body>
+    <div id="profile">
+        <div id="grid-left"><img src="{{user.image_url}}" id="image"></img></div>
+        <div id="grid-right"><h1 id="username">{{user.first_name}} {{user.last_name}} </h1></div>
+        <form action="/edit/{{user.id}}">
+            <button id="edit">Edit</button>
+        </form>
+        <form action="/{{user.id}}/delete" method="POST">
+        <button id="delete">Delete</button>
+        </form>
+        <!-- <li>Image URL: <a href="/s/{{user.image_url}}">{{user.image_url}}</a></li> -->
+    </div>
+    <a href="/">Go Back</a>
+</body>
+</html>
+{% endblock %}
+
+
+
