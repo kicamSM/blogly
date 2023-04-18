@@ -30,11 +30,20 @@ def list_users():
     users = User.query.all()
     return render_template('list.html', users=users)
 
-# render_template('list.html', users=users)
-# "hello world"
+@app.route('/users')
+def list_users_links():
+    """Shows list of all users in db"""
+    users = User.query.all()
+    return render_template('users.html', users=users)
 
-@app.route('/', methods=["POST"])
+@app.route('/add')
+def display_add_user():
+    """Shows add user form"""
+    return render_template('add.html')
+
+@app.route('/add', methods=["POST"])
 def create_user():
+    """create new user"""
     first_name = request.form["first_name"]
     last_name = request.form["last_name"]
     image_url = request.form["image_url"]
@@ -43,7 +52,7 @@ def create_user():
     db.session.add(new_user)
     db.session.commit()
     
-    return redirect(f"/{new_user.id}")
+    return redirect('/users')
 
 
 @app.route('/<int:user_id>')
@@ -52,51 +61,31 @@ def show_user(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('details.html', user=user)
 
-# @app.route('/add', methods=["POST"])
-# def create_user():
-#     """edit details about a single user"""
-#     first_name = request.form["first_name"]
-#     last_name = request.form["last_name"]
-#     image_url = request.form["image_url"]
-    
-#     new_user = User(first_name=first_name, last_name=last_name, image_url=image_url)
-#     db.session.add(new_user)
-#     db.session.commit()
-    
-#     return redirect(f"/{new_user.id}")
-    
-
-@app.route('/edit/<int:user_id>')
-# <int:user_id>
+@app.route('/<int:user_id>/edit')
 def edit_user(user_id):
     """edit details about a single user"""
     user = User.query.get(user_id)
     return render_template('edit.html', user=user)
 
-@app.route('/edit/<int:user_id>', methods=["POST"])
+@app.route('/<int:user_id>/edit', methods=["POST"])
 def post_edited_user(user_id):
+    """takes the information from form and adds new user"""
     user = User.query.get(user_id)
-    # session.delete(user)
-    # db.session.commit()
     
     user.first_name = request.form["first_name"]
     user.last_name = request.form["last_name"]
     user.image_url = request.form["image_url"]
-    # user.user_id = user_id
-    
-    # user = User(first_name=first_name, last_name=last_name, image_url=image_url)
+
     db.session.add(user)
     db.session.commit()
-
-    # return redirect(f"/{user.id}")
-    return redirect("/")
+    
+    return redirect("/users")
  
 @app.route('/<int:user_id>/delete', methods=["POST"])
-# <int:user_id>
 def delete_user(user_id):
     """edit details about a single user"""
     user = User.query.get(user_id)
     db.session.delete(user)
     db.session.commit()
     
-    return redirect('/')
+    return redirect('/users')
