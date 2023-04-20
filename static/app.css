@@ -7,42 +7,125 @@ body {
     padding: 20px;
     border-radius: 20px;
     border: solid rgb(122, 121, 121);
-    display: grid;
+    /* display: grid; */
     align-items: center;
-    grid-template-columns: 1fr 1fr;
-    height: 175px;
-    width: 500px;
-    /* text-align: center; */
-}
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    width: 800px;
+    /* height: 175px; 
+    /* text-align: center; */}
 
-#username {
-margin-right: 50px;
-/* margin-left: 170px; */
-/* margin-top: 50px; */
-/* margin-bottom: 150px; */
+#profile-pic {
+    /* background-color: aquamarine; */
+    display: block;
+    float: left;
 }
 
 #image {
     /* display: flex; */
-    height: 100px;
-    width: 100px;
+    height: 130px;
+    width: 130px;
     border: solid black 2px;
     border-radius: 10px;
     /* margin-left: 50px; */
 }
 
-#edit {
-    height: 30px;
-    width: 60px;
+#container-username {
+    /* background-color: yellow; */
+    /* display: block; */
+    margin-right: 50px;
+    margin-left: 280px;
+}
+
+
+#username {
+    font-size: 45px;
+}
+#profile-buttons {
+    /* background-color: white; */
+    margin-left: 200px;
+    margin-right: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+ } 
+/* .profile-buttons {
+    display: inline-block
+    background-color: lawngreen;
+} */
+
+#posts {
+    /* background-color: darkcyan; */
+    font-size: 20px;
+    margin-left: 30px;
+}
+
+
+.blue {
+    height: 40px;
+    width: 100px;
     background-color: rgb(118, 191, 216);
     border-radius: 10px;
-    margin-left: 170px; 
+    margin: 5px;
+    display: inline-block;
+    /* margin-left: 170px; */
     /* margin-right: 12px;  */
 }
 
-#delete {
-    height: 30px;
-    width: 90px;
+.red {
+    height: 40px;
+    width: 100px;
     background-color: red;
     border-radius: 10px;
+    margin: 5px;
+    display: inline-block;
+}
+
+.white {
+    height: 40px;
+    width: 100px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    margin: 5px;
+    display: inline-block;
+}
+
+.green {
+    height: 40px;
+    width: 100px;
+    background-color: greenyellow;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.input-container {
+    background-color: gray;
+    border: 3px solid black;
+    border-radius: 40px;
+    width: 700px;
+    margin: 50px;
+}
+
+
+.input-container button {
+    /* display: flex; */
+    margin-left: 100px;
+}
+
+.form-header {
+    margin-left: 40px;
+    padding: 30px;
+}
+
+.input-form {
+    margin: 20px;
+    margin-left: 60px;
+    font-size: 24px;
+}
+
+input {
+    width: 200px;
+    height: 30px;
+    background-color: lightgray;
+
 }

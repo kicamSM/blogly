@@ -3,14 +3,22 @@
 {% block title %}All Users{% endblock %}
 
 {% block content %}
-<h1>Edit {{user.first_name}} {{user.last_name}}</h1>
-<form action="/{{user.id}}/edit" method="POST">
-    <input type="text" name="first_name" placeholder="first name">
-    <input type="text" name="last_name" placeholder="last name">
-    <input type="url" name="image_url" placeholder="image url">
-    <button>Submit Edits</button>
-</form>
-<form action="/{{user.id}}">
-    <button>Cancel</button>
-</form>
+<div class="input-container">
+    <h1 class="form-header">Edit {{user.first_name}} {{user.last_name}}</h1>
+    <form action="/{{user.user_id}}/edit" method="POST">
+        <div class="input-form">
+            First Name <input type="text" name="first_name" placeholder="first name">
+        </div>
+        <div class="input-form">
+            Last Name <input type="text" name="last_name" placeholder="last name">
+        </div>
+        <div class="input-form">
+            Image URL <input type="url" name="image_url" placeholder="image url">
+        </div>
+        <button class="blue">Submit Edits</button>
+    </form>
+    <form action="/{{user.id}}">
+        <button class="white">Cancel</button>
+    </form>
+</div>
 {% endblock %}
