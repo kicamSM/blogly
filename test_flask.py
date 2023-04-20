@@ -17,11 +17,6 @@ app.config['DEBUG_TB_HOSTS'] = ['dont-show-debug-toolbar']
 db.drop_all()
 db.create_all()
 
-# this is part of the test below that I am trying to run but not having any luck with
-# def raises_error():
-#         print("raises_error was run")
-#         raise IntegrityError
-
 
 class UserViewsTestCase(TestCase):
     """Tests for views for Users."""
@@ -83,47 +78,18 @@ class UserViewsTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertIn("TestUser2 last_name_test", html)
 
-    
-# -------------------------------------------------------
-    # Note trying to get this test to work. But having no luck will continue to try but continuing on for now. 
-    
-    # def test_fail_add_user(self):
-    #     with app.test_client() as client:
-    #         user = {"first_name": "TestUser", "last_name": "last_name", "image_url": "http://placekitten.com/g/200/300"}
-    #         resp = client.post("/add", data=user, follow_redirects=True)
-    #         html = resp.get_data(as_text=True)
+ 
             
-    #         self.assertRaises(IntegrityError, raises_error)
+    def test_fail_add_user(self):
+        with app.test_client() as client:
+            user = {"first_name": "TestUser", "last_name": "last_name", "image_url": "http://placekitten.com/g/200/300"}
+        with self.assertRaises(IntegrityError):
+            resp = client.post("/add", data=user, follow_redirects=True)
+            html = resp.get_data(as_text=True)
+        # with self.assertRaises(IntegrityError):
+        #     raises_error()
             
-            
-    # def test_fail_add_user(self):
-    #     with app.test_client() as client:
-    #         user = {"first_name": "TestUser", "last_name": "last_name", "image_url": "http://placekitten.com/g/200/300"}
-    #         resp = client.post("/add", data=user, follow_redirects=True)
-    #         html = resp.get_data(as_text=True)
-    #     with self.assertRaises(IntegrityError):
-    #         raises_error()
-            
-    # def test_fail_add_user(self):
-    #     with app.test_client() as client:
-    #         user = {"first_name": "TestUser", "last_name": "last_name", "image_url": "http://placekitten.com/g/200/300"}
-    #         resp = client.post("/add", data=user, follow_redirects=True)
-    #         html = resp.get_data(as_text=True)
-    #         with self.assertRaises(IntegrityError):
-    #             raises_error()
-                
-                
-    # def test_fail_add_user(self):
-    #     with app.test_client() as client:
-    #         user = {"first_name": "TestUser", "last_name": "last_name", "image_url": "http://placekitten.com/g/200/300"}
-    #         resp = client.post("/add", data=user, follow_redirects=True)
-    #         html = resp.get_data(as_text=True)
-    #     with self.assertRaises(IntegrityError):
-    #         raise IntegrityError
-            
-    # if __name__ == "__main__":
-    #     main()
-            
+
 # -----------------------------------------------------------
             
     # still working on these will hopefully be able to figure them out but submitting for now. 
