@@ -28,13 +28,14 @@ db.session.add_all([abe, george, samuel, donald, p1, p2, p3, p4, p5])
 
 db.session.commit()
 
-ta = Tag(name='history', post_with_tag=[PostTag(post_id=p1.id)])
+# ta = Tag(name='history', post_with_tag=[PostTag(post_id=p1.id)])
 
-tb = Tag(name='firsts', post_with_tag=[PostTag(post_id=p3.id)])
+# tb = Tag(name='firsts', post_with_tag=[PostTag(post_id=p3.id)])
 # do you need a tag id in there???? will it be automated???
+t1 = Tag(name="history")
+t2 = Tag(name="firsts")
 
-db.session.add(ta)
-db.session.add(tb)
+db.session.add_all([t1, t2])
 db.session.commit()
 
 # Note that an error you are getting when trying to add to the list a new user. That the id is taken because you set some ids so you have to try and add until you get to 5 because the user_id is taken from 1-4. There should be a way to fix this. Should not be an issue when actually running the app if you are not pre-loading people into it. 

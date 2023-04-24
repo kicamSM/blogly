@@ -60,6 +60,7 @@ def show_user(user_id):
     """Show details about a single user"""
     user = User.query.get_or_404(user_id)
     posts = user.posts
+    # posts = User.post
     # user_posts = post.users
     # post = User.query.get_or_404(user_id.id)
     return render_template('details.html', user=user, posts=posts)
@@ -111,6 +112,7 @@ def create_new_post(user_id):
     # checked_tags = request.form.getlist('tags')
     # you are going to have to look this further tomorrow... time for bed.You are getting the data from the checkboxes but then you need to add that information to the tags which I am uncertain how to do at this point. 
     tags_ids = [int(num) for num in request.form.getlist("tags")]
+    #this is a list comprehension (can google this) which is why we are using square brackets
     # this you looked at from answer. What I believe is happening here. We are taking each value which is the tag_id a number(thus calling it num turning it into an integer, and then iterating through each of them. ])
     tags = Tag.query.filter(Tag.id.in_(tags_ids)).all()
     # Then we are taking the from the Tags model, querying and filtering by the tags_ids and obtaining each tag. 

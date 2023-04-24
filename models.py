@@ -21,10 +21,9 @@ class User(db.Model):
     last_name = db.Column(db.String(20), nullable=False)
     image_url = db.Column(db.String)
 
-    post = db.relationship('Post', cascade="all, delete-orphan")
+    posts = db.relationship('Post', backref="user", cascade="all, delete-orphan")
     # added part into this from solution 
-    
-    # post = db.relationship('Post', backref="user", cascade="all, delete-orphan")
+    #backref to users and changed from post to posts
       
     def __repr__(self):
         u = self
@@ -41,14 +40,17 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow())
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
 
-    user = db.relationship('User', backref=backref("posts", cascade="all, delete-orphan"))
+    # user = db.relationship('User', backref=backref("posts", cascade="all, delete-orphan"))
+    #so aparrently dont need this. This you followed from the doccumentation direcetly btw
+    
     #  user and posts are connected 
     
-    post_with_tag = db.relationship('PostTag', backref='post' )
+    # post_with_tag = db.relationship('PostTag', backref='post' )
     # Post is connected to PostTag Not cause of error
     
     tags = db.relationship('Tag', secondary="post_tag", backref="posts")
     # posts and tags are connected NOT CAUSE OF ERROR
+    # note that this connects to both tags and post_tag so you dont need anything additional. 
     
     
     
@@ -76,7 +78,7 @@ class Tag(db.Model):
     # autoincrement=True this you took this out of tags - not sure if this is correct
     name = db.Column(db.Text, nullable=False, unique=True)
     
-    post_with_tag = db.relationship('PostTag', backref='tag' )
+    # post_with_tag = db.relationship('PostTag', backref='tag' )
     # # Tag is connected to PostTag
     # post = db.relationship('PostTag', cascade="all, delete-orphan")
     # tried this still wont delete
