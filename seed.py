@@ -4,13 +4,13 @@ from models import User, Post, Tag, PostTag, db
 from app import app
 
 # create all tables 
-# db.drop_all()
-# db.create_all()
+db.drop_all()
+db.create_all()
 
-PostTag.query.delete()
-User.query.delete()
-Post.query.delete()
-Tag.query.delete()
+# PostTag.query.delete()
+# User.query.delete()
+# Post.query.delete()
+# Tag.query.delete()
 
 
 abe = User(user_id='1',first_name="Abe", last_name="Lincoln", image_url="http://placekitten.com/g/200/300")
@@ -26,25 +26,15 @@ p5 = Post(title="The first is the best", content="Declaration of Independence", 
 
 db.session.add_all([abe, george, samuel, donald, p1, p2, p3, p4, p5])
 
-# db.session.add(abe)
-# db.session.add(george)
-# db.session.add(samuel)
-# db.session.add(donald)
-
 db.session.commit()
-
-# db.session.add(p1)
-# db.session.add(p2)
-# db.session.add(p3)
-# db.session.add(p4)
-# db.session.add(p5)
-
-# db.session.commit()
 
 ta = Tag(name='history', post_with_tag=[PostTag(post_id=p1.id)])
 
 tb = Tag(name='firsts', post_with_tag=[PostTag(post_id=p3.id)])
 # do you need a tag id in there???? will it be automated???
 
-db.session.add([ta, tb])
+db.session.add(ta)
+db.session.add(tb)
 db.session.commit()
+
+# Note that an error you are getting when trying to add to the list a new user. That the id is taken because you set some ids so you have to try and add until you get to 5 because the user_id is taken from 1-4. There should be a way to fix this. Should not be an issue when actually running the app if you are not pre-loading people into it. 

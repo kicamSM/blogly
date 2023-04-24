@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Add Post{% endblock %}
+{% block title %}View Post{% endblock %}
 
 {% block content %}
 <div id="title-container">
@@ -13,10 +13,17 @@
     <button class="white">Cancel</button>
 </form>
 <form action="/post/{{post.id}}/edit">
-    <button class="blue">Edit</button>
+    <button class="blue">Edit Post</button>
 </form>
 <form action="/post/{{post.id}}/delete" method="POST">
-    <button class="red">Delete</button>
+    <button class="red">Delete Post</button>
 </form>
+<div>
+    <h2>Tags for {{post.title}}</h2>
+    <ul> {% for tag in tags %}
+        <li>{{tag.name}}</li>
+        {% endfor %}
+    </ul>
+</div>
 <div>
 {% endblock %}
